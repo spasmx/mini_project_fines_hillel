@@ -1,1 +1,1 @@
-# mini_project_fines_hillel
+# project with Denis Kovylin
