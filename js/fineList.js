@@ -20,8 +20,12 @@ function searchFines(searchKey){
      */
 
 
-    return [
-        {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
-    ];
+    const result = [];
+    for (let i = 0; i < DB.length; i ++){
+        if (DB[i].номер === searchKey || DB[i].тип.toLowerCase() === searchKey.toLowerCase()){
+            result.push(DB[i]);
+        }   
+    }
+    return result; 
 }
 
