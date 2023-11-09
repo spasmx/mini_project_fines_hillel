@@ -1,7 +1,6 @@
 
 "use strict";
 
-
 let fineNumber = document.getElementById("fineNumber");
 let passport = document.getElementById("passport");
 let creditCardNumber = document.getElementById("creditCardNumber");
@@ -16,12 +15,16 @@ function payFine(){
     if (validated){
         const indexToDelete = findIndexOfFine(fineNumber.value);
         const isCvvValid = validateCvv(cvv.value);
-        if (indexToDelete > -1 && isCvvValid){
-            const el = getEl(indexToDelete);
-            if (el.сума == amount.value){
+        const isCreditCardNumberValid = validateCreditCardNumber(creditCardNumber.value);
+        const isPassportValid = validatePassport(passport.value);
+        if (indexToDelete > -1 && isCvvValid && isCreditCardNumberValid && isPassportValid){
+            const element = getElement(indexToDelete);
+            if (element.сума == amount.value){
                 data.finesData.splice(indexToDelete, 1);
                 alert(`Штраф з обліковим номером ${fineNumber.value}, сплаченно та видаленно з бази. Слава Україні!`);
-            }; 
+            } else{
+                alert("Введена невірна сума для даного штрафу");
+            };
         }; 
     };
 };
@@ -36,9 +39,9 @@ function validateFineNumber(fineNumber){
     return (result) ? result : alert('Номер не знайдено в базі');
 };
 
-function getEl(index){
+function getElement(index){
     return data.finesData[index];
-}
+};
 
 function findIndexOfFine(fineNumber){
     return data.finesData.findIndex(fine => fine['номер'] === fineNumber);
@@ -69,6 +72,9 @@ function validateAmount(amount){
 
 
 
+
+
+// КОД супорта
 // "use strict";
 
 // let fineNumber = document.getElementById("fineNumber");
